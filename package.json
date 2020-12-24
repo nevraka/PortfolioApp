@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server/index.js",
     "build": "next build",
     "start": "next start"
   },
@@ -13,6 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.4.0",
     "next": "^10.0.3",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
