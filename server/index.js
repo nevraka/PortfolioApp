@@ -23,8 +23,11 @@ app.prepare().then(() => {
 
     type Query {
       hello: String
-      portfolio(id: ID): Porfolio
-      portfolios:[Porfolio]
+      portfolio(id: ID): Portfolio
+      portfolios:[Portfolio]
+      }
+      type Mutation{
+        createPortfolio(portfolio:Portfolio): Portfolio
       }
   `);
 

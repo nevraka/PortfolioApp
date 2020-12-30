@@ -1,5 +1,5 @@
 exports.portfolioTypes = `
-type Porfolio {
+type Portfolio {
   _id: ID,
   title: String,
   company: String,

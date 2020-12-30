@@ -47,4 +47,11 @@ exports.portfolioResolvers = {
   portfolios: () => {
     return data.portfolios;
   },
+  createPortfolio: ({ portfolio }) => {
+    const _id = require('crypto').randomBytes(10).toString('hex');
+    const newPortfolio = { ...portfolio };
+    newPortfolio._id = _id;
+    data.portfolios.push(newPortfolio);
+    return newPortfolio;
+  },
 };
