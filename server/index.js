@@ -21,13 +21,13 @@ app.prepare().then(() => {
   const schema = buildSchema(`
     ${portfolioTypes}
 
-    type Query {
+     type Query {
       hello: String
       portfolio(id: ID): Portfolio
       portfolios:[Portfolio]
       }
       type Mutation{
-        createPortfolio(portfolio:Portfolio): Portfolio
+        createPortfolio(input:PortfolioInput): Portfolio
       }
   `);
 
