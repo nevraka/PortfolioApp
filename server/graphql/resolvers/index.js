@@ -1,7 +1,7 @@
 const data = {
   portfolios: [
     {
-      _id: 'kdkmdkckm',
+      _id: 'sad87daasdhjdjsb',
       title: 'Job in Netcentric',
       company: 'Netcentric',
       companyWebsite: 'www.google.com',
@@ -36,22 +36,32 @@ const data = {
   ],
 };
 
-exports.portfolioResolvers = {
+exports.portfolioQueries = {
   hello: () => {
     return 'Hello World!';
   },
-  portfolio: ({ id }) => {
+  portfolio: (root, { id }) => {
     const portfolio = data.portfolios.find((p) => p._id === id);
     return portfolio;
   },
   portfolios: () => {
     return data.portfolios;
   },
-  createPortfolio: ({ input }) => {
+};
+
+exports.portfolioMutations = {
+  createPortfolio: (root, { input }) => {
     const _id = require('crypto').randomBytes(10).toString('hex');
     const newPortfolio = { ...input };
     newPortfolio._id = _id;
     data.portfolios.push(newPortfolio);
+    return newPortfolio;
+  },
+  updatePortfolio: (root, { id, input }) => {
+    const index = data.portfolios.findIndex((p) => p._id === id);
+    const oldPortfolio = data.portfolios[index];
+    const newPortfolio = { ...oldPortfolio, ...input };
+    data.portfolios[index] = newPortfolio;
     return newPortfolio;
   },
 };
