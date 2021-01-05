@@ -1,31 +1,61 @@
+import { useState } from 'react';
 import axios from 'axios';
 import PortfolioCard from '@/components/portfolios/PortfolioCard';
-import Link from 'next/Link';
-import { useState } from 'react';
+import Link from 'next/link';
+
+const graphUpdatePortfolio = (id) => {
+  const query = `
+    mutation UpdatePortfolio {
+      updatePortfolio(id: "${id}",input: {
+        title: "UPDATE Job"
+        company: "UPDATE Company"
+        companyWebsite: "UPDATE Website"
+        location: "UPDATE Location"
+        jobTitle: "UPDATE Job Title"
+        description: "UPDATE Desc"
+        startDate: "12/12/2012 UPDATE"
+        endDate: "14/11/2013 UPDATE"
+      }) {
+        _id,
+        title,
+        company,
+        companyWebsite
+        location
+        jobTitle
+        description
+        startDate
+        endDate
+      }
+    }`;
+  return axios
+    .post('http://localhost:3000/graphql', { query })
+    .then(({ data: graph }) => graph.data)
+    .then((data) => data.updatePortfolio);
+};
 
 const graphCreatePortfolio = () => {
   const query = `
-  mutation CreatePortfolio {
-    createPortfolio(input: {
-      title: "New Job"
-      company: "New Company"
-      companyWebsite: "New Website"
-      location: "New Location"
-      jobTitle: "New Job Title"
-      description: "New Desc"
-      startDate: "12/12/2012"
-      endDate: "14/11/2013"
-    }) {
-      _id,
-      title,
-      company,
-      companyWebsite
-      location
-      jobTitle
-      description
-      startDate
-      endDate
-    }
+    mutation CreatePortfolio {
+      createPortfolio(input: {
+        title: "New Job"
+        company: "New Company"
+        companyWebsite: "New Website"
+        location: "New Location"
+        jobTitle: "New Job Title"
+        description: "New Desc"
+        startDate: "12/12/2012"
+        endDate: "14/11/2013"
+      }) {
+        _id,
+        title,
+        company,
+        companyWebsite
+        location
+        jobTitle
+        description
+        startDate
+        endDate
+      }
     }`;
   return axios
     .post('http://localhost:3000/graphql', { query })
@@ -62,6 +92,15 @@ const Portfolios = ({ data }) => {
     const newPortfolios = [...portfolios, newPortfolio];
     setPortfolios(newPortfolios);
   };
+
+  const updatePortfolio = async (id) => {
+    const updatedPortfolio = await graphUpdatePortfolio(id);
+    const index = portfolios.findIndex((p) => p._id === id);
+    const newPortfolios = portfolios.slice();
+    newPortfolios[index] = updatedPortfolio;
+    setPortfolios(newPortfolios);
+  };
+
   return (
     <>
       <section className="section-title">
@@ -78,11 +117,17 @@ const Portfolios = ({ data }) => {
         <div className="row">
           {portfolios.map((portfolio) => (
             <div key={portfolio._id} className="col-md-4">
-              <Link href="/portfolios[id]" as={`/portfolios/${portfolio._id}`}>
+              <Link href="/portfolios/[id]" as={`/portfolios/${portfolio._id}`}>
                 <a className="card-link">
                   <PortfolioCard portfolio={portfolio} />
                 </a>
               </Link>
+              <button
+                className="btn btn-warning"
+                onClick={() => updatePortfolio(portfolio._id)}
+              >
+                Update Portfolio
+              </button>
             </div>
           ))}
         </div>
