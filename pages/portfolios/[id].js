@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { GET_PORTFOLIO } from '@/apollo/queries';
 
