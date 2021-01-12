@@ -58,6 +58,7 @@ export const CREATE_PORTFOLIO = gql`
     }
   }
 `;
+
 export const UPDATE_PORTFOLIO = gql`
   mutation UpdatePortfolio($id: ID) {
     updatePortfolio(
@@ -83,5 +84,11 @@ export const UPDATE_PORTFOLIO = gql`
       startDate
       endDate
     }
+  }
+`;
+
+export const DELETE_PORTFOLIO = gql`
+  mutation DeletePortfolio($id: ID) {
+    deletePortfolio(id: $id)
   }
 `;
