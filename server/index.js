@@ -20,17 +20,14 @@ app.prepare().then(() => {
   // Construct a schema, using GRAPHQL schema language
   const typeDefs = gql(`
       ${portfolioTypes}
-
       type Query {
-        hello: String
         portfolio(id: ID): Portfolio
         portfolios: [Portfolio]
       }
-
       type Mutation {
         createPortfolio(input: PortfolioInput): Portfolio
-        updatePortfolio(id:ID,input:PortfolioInput):Portfolio
-        deletePortfolio(id:ID):ID
+        updatePortfolio(id: ID, input: PortfolioInput): Portfolio
+        deletePortfolio(id: ID): ID
       }
   `);
 
