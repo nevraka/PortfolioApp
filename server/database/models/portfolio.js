@@ -9,9 +9,8 @@ const portfolioSchema = new Schema({
   jobTitle: { type: String, require: true },
   description: { type: String, require: true },
   startDate: { type: Date, require: true },
-  endDate: Date
+  endDate: Date,
   createAt: { type: Date, default: Date.now },
 });
 
-
-module.exports=mongoose.model('Portfolio',portfolioSchema)
+module.exports = mongoose.model('Portfolio', portfolioSchema);
