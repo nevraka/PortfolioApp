@@ -1,4 +1,9 @@
+
+
+
+
 class Portfolio {
+
   constructor(model) {
     // this.Model === Portfolio
     this.Model = model;
@@ -17,11 +22,11 @@ class Portfolio {
   }
 
   findAndUpdate(id, data) {
-    return this.Model.findOneAndUpdate({ _id: id }, data, { new: true });
+    return this.Model.findOneAndUpdate({_id: id}, data, {new: true});
   }
 
   findAndDelete(id) {
-    return this.Model.findOneAndRemove({ _id: id });
+    return this.Model.findOneAndRemove({_id: id})
   }
 }
 
