@@ -1,61 +1,59 @@
 import { useState } from 'react';
-const RegisterForm = ({ onSubmit }) => {
-  const [form, setForm] = useState({});
+import { useForm } from 'react-hook-form';
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+const RegisterForm = ({ onSubmit }) => {
+  const { register, handleSubmit } = useForm();
 
   return (
-    <form onSubmit={(onSubmit = () => onSubmit(form))}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group">
         <label htmlFor="avatar">Avatar</label>
         <input
+          ref={register}
           type="text"
-          name="avatar"
           className="form-control"
+          name="avatar"
           id="avatar"
-          onChange={handleChange}
         />
       </div>
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <input
+          ref={register}
           type="text"
-          name="username"
           className="form-control"
+          name="username"
           id="username"
-          onChange={handleChange}
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Email</label>
+        <label htmlFor="email">Email</label>
         <input
+          ref={register}
           type="email"
           className="form-control"
+          name="email"
           id="email"
-          onChange={handleChange}
         />
       </div>
       <div className="form-group">
         <label htmlFor="password">Password</label>
         <input
+          ref={register}
           type="password"
-          name="password"
           className="form-control"
+          name="password"
           id="password"
-          onChange={handleChange}
         />
       </div>
       <div className="form-group">
         <label htmlFor="passwordConfirmation">Password Confirmation</label>
         <input
+          ref={register}
           type="password"
-          name="passwordConfirmation"
           className="form-control"
+          name="passwordConfirmation"
           id="passwordConfirmation"
-          onChange={handleChange}
         />
       </div>
       <button type="submit" className="btn btn-main bg-blue py-2 ttu">
@@ -64,4 +62,5 @@ const RegisterForm = ({ onSubmit }) => {
     </form>
   );
 };
+
 export default RegisterForm;
