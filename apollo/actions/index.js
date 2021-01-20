@@ -4,6 +4,7 @@ import {
   CREATE_PORTFOLIO,
   UPDATE_PORTFOLIO,
   DELETE_PORTFOLIO,
+  SIGN_IN,
 } from '@/apollo/queries';
 
 export const useGetPortfolios = () => useQuery(GET_PORTFOLIOS);
@@ -30,3 +31,9 @@ export const useCreatePortfolio = () =>
       });
     },
   });
+
+// Auth actions start----------------
+
+export const useSignIn = () => useMutation(SIGN_IN);
+
+// Auth actions end----------------
