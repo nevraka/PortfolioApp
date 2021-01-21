@@ -19,11 +19,12 @@ const AppNavbar = () => {
     getUser();
   }, []);
 
-  if (data && !hasResponse) {
+  if (data) {
     if (data.user && !user) {
       setUser(data.user);
+      setHasResponse(true);
     }
-    setHasResponse(true);
+    if (!data.user && !hasResponse) setHasResponse(true);
   }
   return (
     <div className="navbar-wrapper">
@@ -50,14 +51,14 @@ const AppNavbar = () => {
                 <>
                   <span className="nav-link mr-4">Welcome{user.username}</span>
                   <AppLink href="/login" className="nav-link btn btn-danger">
-                    Sign In
+                    Sign Out
                   </AppLink>
                 </>
               )}
               {(error || !user) && (
                 <>
                   <AppLink href="/login" className="nav-link mr-3">
-                    Sign Out
+                    Sign In
                   </AppLink>
                   <AppLink
                     href="/register"
