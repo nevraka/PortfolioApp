@@ -33,6 +33,7 @@ exports.userQueries = {
 
 exports.userMutations = {
   signUp: async (root, { input }, ctx) => {
+    console.log('signUp');
     const registeredUser = await ctx.models.User.signUp(input);
     return registeredUser._id;
   },

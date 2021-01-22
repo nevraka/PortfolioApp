@@ -40,13 +40,15 @@ export const useSignIn = () =>
   useMutation(SIGN_IN, {
     update(cache, { data: { signIn: signInUser } }) {
       cache.writeQuery({
-        query: GET_USERquery,
-        data: { user: signIn },
+        query: GET_USER,
+        data: { user: signInUser },
       });
     },
   });
 
 export const useSingOut = () => useMutation(SIGN_OUT);
+
 export const useLazyGetUser = () => useLazyQuery(GET_USER);
+export const useGetUser = () => useQuery(GET_USER);
 
 // Auth actions end----------------
