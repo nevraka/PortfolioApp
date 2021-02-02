@@ -40,6 +40,7 @@ exports.createApolloServer = () => {
   const resolvers = {
     Query: {
       ...portfolioQueries,
+      ...userQueries,
     },
     Mutation: {
       ...portfolioMutations,
