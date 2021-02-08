@@ -1,13 +1,10 @@
-import { useQuery } from '@apollo/react-hooks';
-import { GET_PORTFOLIO } from '@/apollo/queries';
+import { useGetPortfolio } from '@/apollo/actions';
 import withApollo from '@/hoc/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import BaseLayout from '@/layouts/BaseLayout';
 
 const PortfolioDetail = ({ query }) => {
-  const { data } = useQuery(GET_PORTFOLIO, {
-    variables: { id: query.id },
-  });
+  const { data } = useGetPortfolio({ variables: { id: query.id } });
   const portfolio = (data && data.portfolio) || {};
 
   return (
@@ -32,13 +29,16 @@ const PortfolioDetail = ({ query }) => {
             <div className="col-lg-6">
               <h4 className="title">Location</h4>
               <p className="text">{portfolio.location}</p>
+
               <h4 className="title">Start Date</h4>
               <p className="text">{portfolio.startDate}</p>
             </div>
+
             <div className="col-lg-6">
               {/* TODO: days later... */}
               <h4 className="title">Days</h4>
               <p className="text">44</p>
+
               <h4 className="title">End Date</h4>
               <p className="text">{portfolio.endDate}</p>
             </div>
