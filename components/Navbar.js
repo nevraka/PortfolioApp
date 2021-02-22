@@ -48,6 +48,16 @@ const AppNavbar = () => {
             <AppLink href="/cv" className="nav-link mr-3">
               Cv
             </AppLink>
+            <AppLink
+              href="/instructor/[id]/dashboard"
+              as="/instructor/ghsbjbj48484/dashboard"
+              className="nav-link mr-3"
+            >
+              Secret
+            </AppLink>
+            <AppLink href="/dashboard" className="nav-link mr-3">
+              Dashboard
+            </AppLink>
           </Nav>
           {hasResponse && (
             <Nav>
