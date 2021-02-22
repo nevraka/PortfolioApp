@@ -15,6 +15,6 @@ const Secret = withAuth(() => {
       </div>
     </BaseLayout>
   );
-}, ['instructor']);
+}, ['instructor', 'admin']);
 
 export default withApollo(Secret);
